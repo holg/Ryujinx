@@ -16,6 +16,7 @@ using Ryujinx.Ava.UI.Helpers;
 using Ryujinx.Ava.UI.Models;
 using Ryujinx.Ava.UI.Renderer;
 using Ryujinx.Ava.UI.ViewModels;
+using Ryujinx.Ava.UI.Views.Main;
 using Ryujinx.Ava.UI.Windows;
 using Ryujinx.Common;
 using Ryujinx.Common.Configuration;
@@ -1033,7 +1034,14 @@ namespace Ryujinx.Ava
                             ScreenshotRequested = true;
                             break;
                         case KeyboardHotkeyState.ShowUi:
-                            _viewModel.ShowMenuAndStatusBar = true;
+                            if (_viewModel.ShowMenuAndStatusBar)
+                            {
+                                _viewModel.ShowMenuAndStatusBar = false;
+                            }
+                            else
+                            {
+                                _viewModel.ShowMenuAndStatusBar = true;
+                            }
                             break;
                         case KeyboardHotkeyState.Pause:
                             if (_viewModel.IsPaused)
@@ -1076,6 +1084,10 @@ namespace Ryujinx.Ava
 
                             _viewModel.Volume = Device.GetVolume();
                             break;
+                        case KeyboardHotkeyState.ScanAmiibo:
+                            
+                            break;
+
                         case KeyboardHotkeyState.None:
                             (_keyboardInterface as AvaloniaKeyboard).Clear();
                             break;

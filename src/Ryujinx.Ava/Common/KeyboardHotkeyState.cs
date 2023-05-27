@@ -11,6 +11,7 @@
         ResScaleUp,
         ResScaleDown,
         VolumeUp,
-        VolumeDown
+        VolumeDown,
+        ScanAmiibo
     }
 }
