@@ -74,7 +74,7 @@ namespace Ryujinx.Ava.UI.ViewModels
 
         public string TitleId { get; set; }
         public string LastScannedAmiiboId { get; set; }
-
+        
         public UserResult Response { get; private set; }
 
         public bool UseRandomUuid

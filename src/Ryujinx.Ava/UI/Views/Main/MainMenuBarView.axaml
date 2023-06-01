@@ -119,6 +119,7 @@
                     Name="ScanAmiiboMenuItem"
                     AttachedToVisualTree="ScanAmiiboMenuItem_AttachedToVisualTree"
                     Click="OpenAmiiboWindow"
+                    InputGesture="{Binding ScanAmiiboKey}"
                     Header="{locale:Locale MenuBarActionsScanAmiibo}"
                     IsEnabled="{Binding IsAmiiboRequested}" />
                 <MenuItem

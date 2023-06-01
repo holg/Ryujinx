@@ -51,10 +51,12 @@ using System.Threading.Tasks;
 using static Ryujinx.Ava.UI.Helpers.Win32NativeInterop;
 using Image = SixLabors.ImageSharp.Image;
 using InputManager = Ryujinx.Input.HLE.InputManager;
+using Ryujinx.Ui.Common.Models.Amiibo;
 using Key = Ryujinx.Input.Key;
 using MouseButton = Ryujinx.Input.MouseButton;
 using Size = Avalonia.Size;
 using Switch = Ryujinx.HLE.Switch;
+using Window = Avalonia.Controls.Window;
 
 namespace Ryujinx.Ava
 {
@@ -85,7 +87,7 @@ namespace Ryujinx.Ava
         private readonly GraphicsDebugLevel _glLogLevel;
         private float                       _newVolume;
         private KeyboardHotkeyState         _prevHotkeyState;
-
+        private string _lastScannedAmiiboId;
         private long _lastCursorMoveTime;
         private bool _isCursorInRenderer = true;
 
@@ -1085,7 +1087,13 @@ namespace Ryujinx.Ava
                             _viewModel.Volume = Device.GetVolume();
                             break;
                         case KeyboardHotkeyState.ScanAmiibo:
-                            
+                            new AmiiboWindow();
+                            if (_viewModel.IsAmiiboRequested)
+                            {
+                                _lastScannedAmiiboId = _viewModel.LastScannedAmiiboId;
+                                
+                            }
+
                             break;
 
                         case KeyboardHotkeyState.None:

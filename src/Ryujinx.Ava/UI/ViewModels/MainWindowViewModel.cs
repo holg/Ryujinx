@@ -76,6 +76,7 @@ namespace Ryujinx.Ava.UI.ViewModels
         private bool _isLoadingIndeterminate = true;
         private bool _showAll;
         private string _lastScannedAmiiboId;
+        private string _scanamiiboKey = "D";
         private bool _statusBarVisible;
         private ReadOnlyObservableCollection<ApplicationData> _appsObservableList;
 
@@ -872,6 +873,16 @@ namespace Ryujinx.Ava.UI.ViewModels
                 OnPropertyChanged();
             }
         }
+        public KeyGesture ScanAmiiboKey
+        {
+            get => KeyGesture.Parse(_scanamiiboKey);
+            set
+            {
+                _scanamiiboKey = value.ToString();
+
+                OnPropertyChanged();
+            }
+        }
 
         public KeyGesture PauseKey
         {
@@ -1229,6 +1240,11 @@ namespace Ryujinx.Ava.UI.ViewModels
             if (AvaloniaKeyboardMappingHelper.TryGetAvaKey((Ryujinx.Input.Key)ConfigurationState.Instance.Hid.Hotkeys.Value.Screenshot, out var screenshotKey))
             {
                 ScreenshotKey = new KeyGesture(screenshotKey);
+            }
+
+            if (AvaloniaKeyboardMappingHelper.TryGetAvaKey((Ryujinx.Input.Key)ConfigurationState.Instance.Hid.Hotkeys.Value.ScanAmiibo, out var scanamiiboKey))
+            {
+                ScanAmiiboKey = new KeyGesture(scanamiiboKey);
             }
 
             if (AvaloniaKeyboardMappingHelper.TryGetAvaKey((Ryujinx.Input.Key)ConfigurationState.Instance.Hid.Hotkeys.Value.Pause, out var pauseKey))
